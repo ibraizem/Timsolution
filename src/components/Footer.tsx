@@ -12,7 +12,10 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="space-y-4">
             <Link to="/" className="inline-block">
-              <img src="/lovable-uploads/5665f02f-7c8d-47b7-a648-1095ffca3804.png" alt="TIM SOLUTION Logo" className="h-14 w-auto object-contain mb-4" />
+              <span className="text-3xl font-bold">
+                <span className="text-tim-red">TIM</span>
+                <span className="text-white"> SOLUTION</span>
+              </span>
             </Link>
             <p className="text-gray-300 text-sm">
               TIM SOLUTION est spécialisée dans la mise en relation entre professionnels du bâtiment et clients cherchant à réaliser des travaux de rénovation énergétique.
