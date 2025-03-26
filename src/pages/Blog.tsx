@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import { Calendar, User, ChevronRight, ArrowRight, Search } from 'lucide-react';
+import { blogArticles } from '@/data/blogArticles';
+import { BlogArticle } from '@/types/blog';
+import BlogArticleModal from '@/components/BlogArticleModal';
 
 const Blog = () => {
   const [isVisible, setIsVisible] = useState({
@@ -12,6 +15,14 @@ const Blog = () => {
     articles: false,
     categories: false,
   });
+
+  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredArticles, setFilteredArticles] = useState(blogArticles);
+
+  const featuredPost = blogArticles[0];
+  const otherPosts = blogArticles.slice(1);
 
   useEffect(() => {
     // Trigger initial animation
@@ -35,82 +46,56 @@ const Blog = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Blog posts data
-  const featuredPost = {
-    id: 1,
-    title: "MaPrimeRénov' 2023 : Tout ce que vous devez savoir pour vos clients",
-    excerpt: "Guide complet des évolutions de MaPrimeRénov' en 2023 : montants, conditions d'éligibilité et processus de demande pour aider vos clients à financer leurs travaux de rénovation énergétique.",
-    date: "15 mai 2023",
-    author: "Olivier Pinheiro",
-    category: "Aides financières",
-    image: "https://images.unsplash.com/photo-1556156653-e5a7676c4e29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80",
-    readTime: "8 min"
+  useEffect(() => {
+    // Filter articles based on search query
+    if (searchQuery.trim() === '') {
+      setFilteredArticles(otherPosts);
+    } else {
+      const query = searchQuery.toLowerCase();
+      const results = blogArticles.filter(
+        post => 
+          post.title.toLowerCase().includes(query) || 
+          post.excerpt.toLowerCase().includes(query) || 
+          post.category.toLowerCase().includes(query)
+      );
+      
+      setFilteredArticles(results.length > 0 ? results : otherPosts);
+    }
+  }, [searchQuery]);
+
+  const openArticle = (article: BlogArticle) => {
+    setSelectedArticle(article);
+    setIsModalOpen(true);
+    // Add history entry to allow back button to close modal
+    window.history.pushState({ modal: true }, '');
   };
 
-  const blogPosts = [
-    {
-      id: 2,
-      title: "Les 7 arguments qui convainquent vos prospects à passer à l'action",
-      excerpt: "Découvrez les techniques de vente les plus efficaces pour transformer vos prospects en clients satisfaits dans le secteur de la rénovation énergétique.",
-      date: "3 juin 2023",
-      author: "Sophie Martin",
-      category: "Commercialisation",
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1774&q=80",
-      readTime: "5 min"
-    },
-    {
-      id: 3,
-      title: "RE2020 : Les nouvelles normes pour les professionnels du bâtiment",
-      excerpt: "Tout ce que vous devez savoir sur la nouvelle réglementation environnementale 2020 et son impact sur votre métier au quotidien.",
-      date: "21 mai 2023",
-      author: "Pierre Dupont",
-      category: "Réglementation",
-      image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      readTime: "7 min"
-    },
-    {
-      id: 4,
-      title: "Comment optimiser votre trésorerie en période d'inflation",
-      excerpt: "Conseils pratiques pour les artisans et entreprises du bâtiment pour mieux gérer leur trésorerie dans un contexte économique tendu.",
-      date: "12 mai 2023",
-      author: "Jean-Michel Roux",
-      category: "Gestion d'entreprise",
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80",
-      readTime: "6 min"
-    },
-    {
-      id: 5,
-      title: "Les matériaux biosourcés : un marché en plein essor",
-      excerpt: "Zoom sur les opportunités offertes par les matériaux écologiques dans le secteur du bâtiment et de la rénovation énergétique.",
-      date: "28 avril 2023",
-      author: "Marie Leclerc",
-      category: "Tendances",
-      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      readTime: "4 min"
-    },
-    {
-      id: 6,
-      title: "Guide complet des CEE pour vos clients en 2023",
-      excerpt: "Tout savoir sur les Certificats d'Économies d'Énergie : fonctionnement, barèmes et démarches pour en faire bénéficier vos clients.",
-      date: "15 avril 2023",
-      author: "Olivier Pinheiro",
-      category: "Aides financières",
-      image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      readTime: "9 min"
-    },
-  ];
+  useEffect(() => {
+    // Handle browser back button to close modal
+    const handlePopState = (event: PopStateEvent) => {
+      if (isModalOpen) {
+        setIsModalOpen(false);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [isModalOpen]);
+
+  // Get related articles for the selected article
+  const getRelatedArticles = (article: BlogArticle | null) => {
+    if (!article) return [];
+    
+    return blogArticles
+      .filter(post => 
+        post.id !== article.id && 
+        (post.category === article.category || post.author === article.author)
+      )
+      .slice(0, 3);
+  };
 
   // Categories
-  const categories = [
-    "Aides financières",
-    "Commercialisation",
-    "Réglementation",
-    "Gestion d'entreprise",
-    "Tendances",
-    "Marketing",
-    "RH et recrutement",
-    "Outils numériques"
-  ];
+  const categories = Array.from(new Set(blogArticles.map(post => post.category)));
 
   return (
     <Layout>
@@ -133,6 +118,8 @@ const Blog = () => {
               <input
                 type="text"
                 placeholder="Rechercher un article..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-5 py-3 rounded-full border border-gray-200 focus:border-tim-red focus:ring-1 focus:ring-tim-red focus:outline-none transition-colors pr-12"
               />
               <button className="absolute right-3 top-1/2 -translate-y-1/2 text-tim-red">
@@ -152,7 +139,10 @@ const Blog = () => {
             </h2>
           </div>
 
-          <div className={`bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-700 ${isVisible.featured ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div 
+            className={`bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-700 hover:shadow-xl cursor-pointer ${isVisible.featured ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            onClick={() => openArticle(featuredPost)}
+          >
             <div className="flex flex-col lg:flex-row">
               <div className="w-full lg:w-1/2">
                 <img 
@@ -165,7 +155,7 @@ const Blog = () => {
                 <span className="text-xs font-semibold text-tim-red uppercase tracking-wider mb-2">
                   {featuredPost.category}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 hover:text-tim-red transition-colors">
                   {featuredPost.title}
                 </h3>
                 <p className="text-gray-600 mb-6">
@@ -202,10 +192,11 @@ const Blog = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
+            {filteredArticles.map((post, index) => (
               <div 
                 key={post.id}
-                className={`bg-white rounded-xl overflow-hidden shadow-md transition-all duration-700 hover:-translate-y-2 hover:shadow-lg delay-${100 * (index % 3 + 1)} ${isVisible.articles ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                className={`bg-white rounded-xl overflow-hidden shadow-md transition-all duration-700 hover:-translate-y-2 hover:shadow-lg cursor-pointer delay-${100 * (index % 3 + 1)} ${isVisible.articles ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                onClick={() => openArticle(post)}
               >
                 <img 
                   src={post.image} 
@@ -258,11 +249,14 @@ const Blog = () => {
 
           <div className={`flex flex-wrap justify-center gap-4 transition-all duration-700 delay-200 ${isVisible.categories ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {categories.map((category) => (
-              <Link key={category} to={`/blog/category/${category.toLowerCase().replace(/\s+/g, '-')}`}>
-                <div className="bg-gray-50 hover:bg-tim-red hover:text-white px-6 py-3 rounded-full shadow-sm transition-all text-gray-700 font-medium text-sm">
-                  {category}
-                </div>
-              </Link>
+              <Button 
+                key={category} 
+                variant="outline" 
+                className="bg-gray-50 hover:bg-tim-red hover:text-white hover:border-tim-red rounded-full transition-all text-gray-700 font-medium"
+                onClick={() => setSearchQuery(category)}
+              >
+                {category}
+              </Button>
             ))}
           </div>
 
@@ -284,6 +278,14 @@ const Blog = () => {
           </div>
         </div>
       </section>
+
+      {/* Blog Article Modal */}
+      <BlogArticleModal 
+        article={selectedArticle} 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        relatedArticles={getRelatedArticles(selectedArticle)}
+      />
     </Layout>
   );
 };

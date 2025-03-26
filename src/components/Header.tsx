@@ -50,6 +50,12 @@ const Header = () => {
               Comment ça marche ?
             </Link>
             <Link 
+              to="/case-studies" 
+              className={`text-gray-900 hover:text-tim-red transition-colors font-medium red-gradient-border ${location.pathname === '/case-studies' ? 'text-tim-red' : ''}`}
+            >
+              Études de cas
+            </Link>
+            <Link 
               to="/testimonials" 
               className={`text-gray-900 hover:text-tim-red transition-colors font-medium red-gradient-border ${location.pathname === '/testimonials' ? 'text-tim-red' : ''}`}
             >
@@ -103,6 +109,13 @@ const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Comment ça marche ?
+            </Link>
+            <Link 
+              to="/case-studies" 
+              className={`block py-3 text-gray-900 hover:text-tim-red font-medium border-b border-gray-100 ${location.pathname === '/case-studies' ? 'text-tim-red' : ''}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Études de cas
             </Link>
             <Link 
               to="/testimonials" 
