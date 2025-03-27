@@ -1,9 +1,9 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import { ChevronRight, Star, Users, Briefcase, CheckCircle, Home, AreaChart, Hammer, Wrench, LayoutGrid, Fan, Waves, Shield } from 'lucide-react';
+import { Shield as ShieldIcon, Home as HomeIcon, Sparkles, ArrowRight } from 'lucide-react';
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState({
@@ -15,67 +15,20 @@ const Index = () => {
     cta: false,
   });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Set visibility for each section as they appear in viewport
-      const sections = ['hero', 'services', 'process', 'testimonials', 'stats', 'cta'];
-      sections.forEach((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const isInViewport = rect.top <= window.innerHeight * 0.8;
-          setIsVisible(prev => ({ ...prev, [section]: isInViewport }));
-        }
-      });
-    };
-
-    // Trigger once to show initial elements
-    setTimeout(() => setIsVisible(prev => ({ ...prev, hero: true })), 100);
-    
-    // Set up scroll listener
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Testimonials data
-  const testimonials = [
-    {
-      id: 1,
-      name: "Jean Dupont",
-      company: "Dupont Isolation",
-      text: "Depuis que nous avons rejoint TIM SOLUTION, notre carnet de commandes est rempli à 3 mois d'avance. Les contacts sont véritablement qualifiés et nous permettent de gagner un temps considérable.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    },
-    {
-      id: 2,
-      name: "Sophie Martin",
-      company: "EcoToiture",
-      text: "La qualité des leads reçus est remarquable. Sur 10 contacts, nous concrétisons régulièrement 6 à 7 chantiers, ce qui est un excellent ratio dans notre secteur.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    },
-    {
-      id: 3,
-      name: "Pierre Leroy",
-      company: "Bati-Rénov",
-      text: "TIM SOLUTION nous a aidés à développer notre activité dans une période difficile. Le processus est simple et l'équipe est toujours disponible pour nous accompagner.",
-      rating: 4,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    },
-  ];
+  const [showNotification, setShowNotification] = useState(true);
+  const [notificationPosition, setNotificationPosition] = useState({ x: 0, y: 0 });
 
   // Services data
   const services = [
     {
       title: "Isolation",
       description: "Isolation thermique et acoustique pour tous types de bâtiments",
-      icon: Shield,
+      icon: ShieldIcon,
     },
     {
       title: "Toiture",
       description: "Réfection et rénovation de toiture, traitement de charpente",
-      icon: Home,
+      icon: HomeIcon,
     },
     {
       title: "Charpente",
@@ -128,65 +81,167 @@ const Index = () => {
     },
   ];
 
+  // Testimonials
+  const testimonials = [
+    {
+      id: 1,
+      name: "Jean Dupont",
+      company: "Dupont Isolation",
+      text: "Depuis que nous avons rejoint TIM SOLUTION, notre carnet de commandes est rempli à 3 mois d'avance. Les contacts sont véritablement qualifiés et nous permettent de gagner un temps considérable.",
+      rating: 5,
+      image: "/personne-qui-isole-une-toiture.png",
+    },
+    {
+      id: 2,
+      name: "Sophie Martin",
+      company: "EcoToiture",
+      text: "La qualité des leads reçus est remarquable. Sur 10 contacts, nous concrétisons régulièrement 6 à 7 chantiers, ce qui est un excellent ratio dans notre secteur.",
+      rating: 5,
+      image: "/isolation-des-combles-par-soufflage.png",
+    },
+    {
+      id: 3,
+      name: "Pierre Leroy",
+      company: "Bati-Rénov",
+      text: "TIM SOLUTION nous a aidés à développer notre activité dans une période difficile. Le processus est simple et l'équipe est toujours disponible pour nous accompagner.",
+      rating: 4,
+      image: "/personne-qui-isole-un-mur.png",
+    },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Set visibility for each section as they appear in viewport
+      const sections = ['hero', 'services', 'process', 'testimonials', 'stats', 'cta'];
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const isInViewport = rect.top <= window.innerHeight * 0.8;
+          setIsVisible(prev => ({ ...prev, [section]: isInViewport }));
+        }
+      });
+    };
+
+    // Trigger once to show initial elements
+    setTimeout(() => setIsVisible(prev => ({ ...prev, hero: true })), 100);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Masquer la pastille de notification
+    setShowNotification(false);
+    // Rediriger vers la page Contact
+    window.location.href = '/contact';
+  };
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section id="hero" className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-r from-gray-50 to-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between">
-            <div className={`max-w-xl mb-12 lg:mb-0 lg:mr-8 transition-all duration-700 ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider text-tim-red bg-tim-red/10 uppercase rounded-full">
-                Spécialiste de la rénovation énergétique
+      <section id="hero" className="relative min-h-screen bg-gradient-to-r from-gray-50 to-gray-100">
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-[url('/bg-pattern.svg')] bg-repeat opacity-5 pointer-events-none" />
+
+        {/* Hero content */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Hero title */}
+            <div className={`mb-8 ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-700`}>
+              <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider text-tim-red bg-tim-red/10 uppercase rounded-full mb-4">
+                Solution complète
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Trouvez vos <span className="text-tim-red">prochains chantiers</span> dès aujourd'hui !
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Des contacts qualifiés pour développer votre activité
               </h1>
-              <p className="text-lg md:text-xl text-gray-600 mb-8">
-                TIM SOLUTION vous met en relation avec des clients qualifiés à la recherche d'artisans pour leurs projets de rénovation énergétique.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/contact">
-                  <Button className="bg-tim-red hover:bg-tim-red/90 text-white text-lg px-8 py-6 rounded-md transition-all animate-pulse-scale shadow-lg shadow-tim-red/20 w-full sm:w-auto">
-                    Je veux plus de chantiers
-                    <ChevronRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link to="/how-it-works">
-                  <Button variant="outline" className="border-tim-red text-tim-red hover:bg-tim-red/5 text-lg px-8 py-6 rounded-md transition-all w-full sm:w-auto">
-                    Comment ça marche ?
-                  </Button>
-                </Link>
-              </div>
             </div>
-            <div className={`relative transition-all duration-700 delay-300 ${isVisible.hero ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <div className="relative w-full max-w-md mx-auto">
-                <div className="absolute inset-0 bg-tim-red/20 rounded-full blur-3xl opacity-30 animate-pulse"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
-                  alt="Artisan du bâtiment" 
-                  className="relative z-10 rounded-lg shadow-2xl object-cover"
-                />
+
+            {/* Hero description */}
+            <div className={`mb-12 ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-700 delay-200`}>
+              <p className="text-lg md:text-xl text-gray-600 mb-8">
+                Nous vous aidons à trouver des clients qualifiés pour votre entreprise de bâtiment. Des prospects prêts à engager des travaux d'isolation, de toiture ou de menuiserie.
+              </p>
+            </div>
+
+            {/* Hero button */}
+            <div className={`flex justify-center ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-700 delay-400`}>
+              <div className="relative">
+                <div className="relative">
+                  <Button 
+                    className="bg-white hover:bg-gray-100 text-red-600 hover:text-red-700 px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl rounded-full transition-all flex items-center gap-3 relative zoom-in shadow-md hover:shadow-lg border border-red-600"
+                    onClick={handleButtonClick}
+                  >
+                    Je veux plus de chantiers
+                    <ChevronRight className="h-5 md:h-6 w-5 md:w-6 text-red-600" />
+                  </Button>
+                  {/* Notification badge */}
+                  {showNotification && (
+                    <div 
+                      className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold w-6 h-6 rounded-full flex items-center justify-center badge-pulse shadow-lg"
+                    >
+                      1
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        {/* Stats bar */}
-        <div className="max-w-7xl mx-auto mt-16 px-4 sm:px-6 lg:px-8">
-          <div className={`bg-white rounded-xl shadow-xl p-8 glass-card transition-all duration-700 delay-500 ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-tim-red mb-2">+5000</div>
-                <p className="text-gray-600">Chantiers réalisés</p>
+
+          {/* Hero images */}
+          <div className="relative mt-16">
+            {/* Image grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+              {/* Image 1 */}
+              <div className={`relative overflow-hidden rounded-lg shadow-lg ${isVisible.hero ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} transition-all duration-700 delay-600`}>
+                <img
+                  src="/personne-qui-isole-une-toiture.png"
+                  alt="Personne qui isole une toiture"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <ShieldIcon className="h-5 md:h-6 w-5 md:w-6 text-tim-red mr-2" />
+                  <span className="font-semibold">Isolation toiture</span>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-tim-red mb-2">+1500</div>
-                <p className="text-gray-600">Entreprises partenaires</p>
+
+              {/* Image 2 */}
+              <div className={`relative overflow-hidden rounded-lg shadow-lg ${isVisible.hero ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} transition-all duration-700 delay-700`}>
+                <img
+                  src="/isolation-des-combles-par-soufflage.png"
+                  alt="Isolation des combles par soufflage"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <HomeIcon className="h-5 md:h-6 w-5 md:w-6 text-tim-red mr-2" />
+                  <span className="font-semibold">Isolation combles</span>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-tim-red mb-2">97%</div>
-                <p className="text-gray-600">De satisfaction client</p>
+
+              {/* Image 3 */}
+              <div className={`relative overflow-hidden rounded-lg shadow-lg ${isVisible.hero ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} transition-all duration-700 delay-800`}>
+                <img
+                  src="/personne-qui-isole-un-mur.png"
+                  alt="Personne qui isole un mur"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <Sparkles className="h-5 md:h-6 w-5 md:w-6 text-tim-red mr-2" />
+                  <span className="font-semibold">Isolation mur</span>
+                </div>
               </div>
+            </div>
+
+            {/* Floating elements */}
+            <div className={`absolute -top-20 -right-20 ${isVisible.hero ? 'scale-100' : 'scale-0'} transition-all duration-1000 delay-500`}>
+              <div className="w-40 h-40 bg-tim-red/10 rounded-full blur-2xl" />
+            </div>
+
+            <div className={`absolute -bottom-20 -left-20 ${isVisible.hero ? 'scale-100' : 'scale-0'} transition-all duration-1000 delay-600`}>
+              <div className="w-32 h-32 bg-tim-red/5 rounded-full blur-2xl" />
             </div>
           </div>
         </div>
@@ -219,7 +274,7 @@ const Index = () => {
                 <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
                 <p className="text-gray-600">{service.description}</p>
               </div>
-            ))}
+            )) }
           </div>
         </div>
       </section>

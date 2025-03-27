@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -62,25 +61,25 @@ const Testimonials = () => {
       position: "Fondateur",
       text: "TIM SOLUTION nous a aidés à développer notre activité dans une période difficile. Le processus est simple et l'équipe est toujours disponible pour nous accompagner. Nous collaborons depuis maintenant 2 ans et les résultats sont au rendez-vous. Un grand merci à toute l'équipe pour leur professionnalisme et leur accompagnement.",
       rating: 4,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      image: "https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     },
     {
       id: 4,
       name: "Marie Dubois",
-      company: "Ventil'Air",
-      position: "Co-gérante",
-      text: "Grâce à TIM SOLUTION, nous avons pu nous concentrer sur notre cœur de métier en limitant les dépenses marketing. Les prospects sont de qualité et le service client est impeccable. Un vrai gain de temps et d'argent pour notre entreprise qui nous a permis d'embaucher deux techniciens supplémentaires.",
+      company: "Isolation Plus",
+      position: "Responsable marketing",
+      text: "L'accompagnement de TIM SOLUTION est exemplaire. Ils nous ont permis de cibler précisément notre clientèle idéale et d'optimiser notre stratégie de communication. Les résultats sont visibles sur notre chiffre d'affaires et notre notoriété.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     },
     {
       id: 5,
-      name: "Thomas Bernard",
-      company: "Menuiserie Bernard",
-      position: "Dirigeant",
-      text: "Après avoir testé plusieurs solutions pour développer notre activité, nous avons choisi TIM SOLUTION pour la qualité de leurs contacts et leur professionnalisme. Les projets sont bien qualifiés et correspondent parfaitement à nos critères. Une belle collaboration qui dure depuis plus de 3 ans maintenant.",
+      name: "Lucas Bernard",
+      company: "Toitures Pro",
+      position: "Directeur technique",
+      text: "La qualité des contacts fournis par TIM SOLUTION est exceptionnelle. Nous avons pu nous concentrer sur notre cœur de métier tout en développant notre activité. Le suivi et l'accompagnement sont au top.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     },
     {
       id: 6,
@@ -89,7 +88,7 @@ const Testimonials = () => {
       position: "Responsable développement",
       text: "Notre collaboration avec TIM SOLUTION nous a permis de doubler notre chiffre d'affaires en seulement un an. Les prospects sont bien ciblés et les projets correspondent parfaitement à notre domaine d'expertise. Je recommande vivement leurs services à toutes les entreprises du bâtiment.",
       rating: 4,
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     },
   ];
 
@@ -99,7 +98,7 @@ const Testimonials = () => {
       id: 1,
       title: "Comment Dupont Isolation a augmenté son CA de 40% en 6 mois",
       description: "Découvrez comment cette entreprise spécialisée en isolation a transformé son activité grâce à TIM SOLUTION.",
-      image: "https://images.unsplash.com/photo-1604754742629-3e0f4a58772a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: "/isover.jpg",
       company: "Dupont Isolation",
       results: [
         "40% d'augmentation du CA en 6 mois",
@@ -111,7 +110,7 @@ const Testimonials = () => {
       id: 2,
       title: "EcoToiture : de l'artisanat local à l'entreprise régionale",
       description: "L'histoire d'une entreprise de toiture qui a su se développer tout en conservant ses valeurs.",
-      image: "https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80",
+      image: "/renovation-de-toiture.png",
       company: "EcoToiture",
       results: [
         "Passage de 4 à 12 employés en 2 ans",
@@ -123,7 +122,7 @@ const Testimonials = () => {
       id: 3,
       title: "Ventil'Air : comment se spécialiser dans un marché de niche",
       description: "Une entreprise de ventilation qui a su se positionner comme leader sur son marché grâce à TIM SOLUTION.",
-      image: "https://images.unsplash.com/photo-1621913214521-9b9e9483001e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: "/vmc-double-flux.png",
       company: "Ventil'Air",
       results: [
         "Spécialisation en VMC double flux",

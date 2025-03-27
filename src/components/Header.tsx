@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -7,6 +6,7 @@ import { Button } from '@/components/ui/button';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showNotification, setShowNotification] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center">
             <span className="text-2xl font-bold">
               <span className="text-tim-red">TIM</span>
@@ -67,11 +67,23 @@ const Header = () => {
             >
               Blog / Conseils
             </Link>
-            <Link to="/contact">
-              <Button className={`bg-tim-red hover:bg-tim-red/90 text-white rounded-md px-6 py-2 transition-all ${location.pathname === '/contact' ? 'bg-tim-red/80' : ''}`}>
-                Contact
-              </Button>
-            </Link>
+            <div className="relative">
+              <Link to="/contact">
+                <Button 
+                  className={`bg-red-600 hover:bg-red-700 text-white rounded-md px-6 py-2 transition-all flex items-center gap-2 relative zoom-in shadow-md hover:shadow-lg ${location.pathname === '/contact' ? 'bg-red-700' : ''}`}
+                >
+                  Contact
+                </Button>
+              </Link>
+              {/* Notification badge */}
+              {showNotification && (
+                <div 
+                  className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold w-6 h-6 rounded-full flex items-center justify-center badge-pulse shadow-lg"
+                >
+                  1
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -131,15 +143,25 @@ const Header = () => {
             >
               Blog / Conseils
             </Link>
-            <Link 
-              to="/contact" 
-              className={`block ${location.pathname === '/contact' ? 'text-tim-red' : ''}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Button className="w-full bg-tim-red hover:bg-tim-red/90 text-white rounded-md py-3 transition-all">
-                Contact
-              </Button>
-            </Link>
+            <div className="relative">
+              <Link 
+                to="/contact" 
+                className={`block ${location.pathname === '/contact' ? 'text-tim-red' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white rounded-md py-3 transition-all zoom-in shadow-md hover:shadow-lg">
+                  Contact
+                </Button>
+              </Link>
+              {/* Notification badge */}
+              {showNotification && (
+                <div 
+                  className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold w-6 h-6 rounded-full flex items-center justify-center badge-pulse shadow-lg"
+                >
+                  1
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

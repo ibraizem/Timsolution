@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -43,49 +42,49 @@ const Services = () => {
       description: "Isolation des combles, murs, sols et toitures. Nous mettons en relation des particuliers cherchant à améliorer leur performance énergétique avec des professionnels qualifiés RGE.",
       icon: Shield,
       benefits: ["Confort thermique amélioré", "Économies d'énergie", "Éligible aux aides de l'État", "Valorisation du patrimoine"],
-      image: "https://images.unsplash.com/photo-1604754742629-3e0f4a58772a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+      image: "/personne-qui-isole-un-mur.png"
     },
     {
       title: "Toiture",
       description: "Réfection, réparation et étanchéité de toiture. Nos partenaires interviennent sur tous types de toitures pour garantir la protection de votre habitation.",
       icon: Home,
       benefits: ["Protection contre les intempéries", "Prévention des infiltrations", "Amélioration de l'isolation", "Esthétique préservée"],
-      image: "https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80"
+      image: "/renovation-de-toiture.png"
     },
     {
       title: "Charpente",
       description: "Construction et rénovation de charpentes traditionnelles ou industrielles. Nos artisans charpentiers interviennent sur tous types de projets.",
       icon: LayoutGrid,
       benefits: ["Structure solide et durable", "Adaptation aux contraintes techniques", "Expertise artisanale", "Matériaux de qualité"],
-      image: "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+      image: "/construction-de-charpente.png"
     },
     {
       title: "Salle de bain",
       description: "Rénovation complète de salle de bain, installation de douche à l'italienne, adaptation PMR. Nos professionnels vous accompagnent de la conception à la réalisation.",
       icon: Waves,
       benefits: ["Confort et fonctionnalité", "Design personnalisé", "Économies d'eau", "Accessibilité PMR"],
-      image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+      image: "/salle.jpg"
     },
     {
       title: "Menuiserie",
       description: "Pose et remplacement de menuiseries extérieures et intérieures : fenêtres, portes, volets, etc. Des solutions adaptées pour améliorer votre confort et réduire vos factures.",
       icon: Briefcase,
       benefits: ["Isolation thermique et phonique", "Sécurité renforcée", "Design moderne", "Entretien facile"],
-      image: "https://images.unsplash.com/photo-1586437220091-4d95421bee13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+      image: "/Menuiserie.jpg"
     },
     {
       title: "Ventilation",
       description: "Installation de systèmes de ventilation (VMC simple et double flux). Une bonne ventilation est essentielle pour la qualité de l'air de votre logement.",
       icon: Fan,
       benefits: ["Air sain et renouvelé", "Prévention des moisissures", "Économies d'énergie", "Confort optimal"],
-      image: "https://images.unsplash.com/photo-1621913214521-9b9e9483001e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+      image: "/vmc-double-flux.png"
     },
     {
       title: "Maçonnerie",
       description: "Travaux de maçonnerie générale et gros œuvre. Nos maçons qualifiés interviennent sur tous types de projets de construction et rénovation.",
       icon: Hammer,
       benefits: ["Solidité et durabilité", "Expertise technique", "Matériaux de qualité", "Finitions soignées"],
-      image: "https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+      image: "/masson.jpg"
     },
   ];
 

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -165,7 +164,10 @@ const HowItWorks = () => {
                 </div>
                 <div className="w-full md:w-1/2">
                   <img 
-                    src={`https://images.unsplash.com/photo-${1600000000000 + index * 10000}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80`} 
+                    src={index === 0 ? "/1.png" : 
+                         index === 1 ? "/2.png" : 
+                         index === 2 ? "/3.png" : 
+                         "/4.png"} 
                     alt={`Étape ${step.number}`} 
                     className="rounded-xl shadow-xl object-cover w-full h-80"
                   />

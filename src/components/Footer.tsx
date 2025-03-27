@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 
@@ -6,9 +5,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-tim-black text-white pt-16 pb-8">
+    <footer className="bg-tim-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
           {/* Logo and Description */}
           <div className="space-y-4">
             <Link to="/" className="inline-block">
@@ -17,7 +16,7 @@ const Footer = () => {
                 <span className="text-white"> SOLUTION</span>
               </span>
             </Link>
-            <p className="text-gray-300 text-sm">
+            <p className="text-gray-300 text-sm leading-relaxed">
               TIM SOLUTION est spécialisée dans la mise en relation entre professionnels du bâtiment et clients cherchant à réaliser des travaux de rénovation énergétique.
             </p>
             <div className="flex space-x-4 pt-2">
@@ -41,37 +40,37 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 border-b border-tim-red pb-2 inline-block">Navigation</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-tim-red transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                   Accueil
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-300 hover:text-tim-red transition-colors">
+                <Link to="/services" className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                   Nos Services
                 </Link>
               </li>
               <li>
-                <Link to="/how-it-works" className="text-gray-300 hover:text-tim-red transition-colors">
+                <Link to="/how-it-works" className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                   Comment ça marche ?
                 </Link>
               </li>
               <li>
-                <Link to="/case-studies" className="text-gray-300 hover:text-tim-red transition-colors">
+                <Link to="/case-studies" className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                   Études de cas
                 </Link>
               </li>
               <li>
-                <Link to="/testimonials" className="text-gray-300 hover:text-tim-red transition-colors">
+                <Link to="/testimonials" className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                   Témoignages
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-300 hover:text-tim-red transition-colors">
+                <Link to="/blog" className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                   Blog / Conseils
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-tim-red transition-colors">
+                <Link to="/contact" className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                   Contact
                 </Link>
               </li>
@@ -82,25 +81,25 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 border-b border-tim-red pb-2 inline-block">Secteurs couverts</h4>
             <ul className="space-y-2">
-              <li className="text-gray-300 hover:text-tim-red transition-colors">
+              <li className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                 Isolation
               </li>
-              <li className="text-gray-300 hover:text-tim-red transition-colors">
+              <li className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                 Toiture
               </li>
-              <li className="text-gray-300 hover:text-tim-red transition-colors">
+              <li className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                 Charpente
               </li>
-              <li className="text-gray-300 hover:text-tim-red transition-colors">
+              <li className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                 Salle de bain
               </li>
-              <li className="text-gray-300 hover:text-tim-red transition-colors">
+              <li className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                 Menuiserie
               </li>
-              <li className="text-gray-300 hover:text-tim-red transition-colors">
+              <li className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                 Ventilation
               </li>
-              <li className="text-gray-300 hover:text-tim-red transition-colors">
+              <li className="text-gray-300 hover:text-tim-red transition-colors text-sm">
                 Maçonnerie
               </li>
             </ul>
@@ -110,33 +109,25 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 border-b border-tim-red pb-2 inline-block">Contact</h4>
             <ul className="space-y-3">
-              <li className="flex items-start space-x-3">
-                <MapPin size={18} className="text-tim-red mt-1 flex-shrink-0" />
-                <span className="text-gray-300">
-                  3 ter rue condorcet<br />
-                  33150 CENON
-                </span>
+              <li className="flex items-center text-gray-300 hover:text-tim-red transition-colors">
+                <Phone className="h-5 w-5 mr-2" />
+                <span>+33 1 23 45 67 89</span>
               </li>
-              <li className="flex items-center space-x-3">
-                <Mail size={18} className="text-tim-red flex-shrink-0" />
-                <a href="mailto:timsolution33@outlook.com" className="text-gray-300 hover:text-tim-red transition-colors">
-                  timsolution33@outlook.com
-                </a>
+              <li className="flex items-center text-gray-300 hover:text-tim-red transition-colors">
+                <Mail className="h-5 w-5 mr-2" />
+                <span>contact@timsolution.fr</span>
               </li>
-              <li className="flex items-center space-x-3">
-                <Phone size={18} className="text-tim-red flex-shrink-0" />
-                <a href="tel:+33000000000" className="text-gray-300 hover:text-tim-red transition-colors">
-                  +33 (0) 00 00 00 00
-                </a>
+              <li className="flex items-center text-gray-300 hover:text-tim-red transition-colors">
+                <MapPin className="h-5 w-5 mr-2" />
+                <span>123 Rue du Bâtiment, 75000 Paris</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
-            &copy; {currentYear} TIM SOLUTION. Tous droits réservés.
-          </p>
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+          <p>&copy; {currentYear} TIM SOLUTION. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

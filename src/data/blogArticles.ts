@@ -1,4 +1,3 @@
-
 import { BlogArticle } from "@/types/blog";
 
 export const blogArticles: BlogArticle[] = [
@@ -9,7 +8,7 @@ export const blogArticles: BlogArticle[] = [
     date: "15 mai 2023",
     author: "Olivier Pinheiro",
     category: "Aides financières",
-    image: "/images/blog-maprimerenov.jpg",
+    image: "/mpr.png",
     readTime: "8 min",
     content: [
       {
@@ -136,7 +135,7 @@ export const blogArticles: BlogArticle[] = [
     date: "3 juin 2023",
     author: "Sophie Martin",
     category: "Commercialisation",
-    image: "/images/blog-arguments-vente.jpg",
+    image: "/conv.jpg",
     readTime: "5 min",
     content: [
       {
@@ -262,7 +261,7 @@ export const blogArticles: BlogArticle[] = [
     date: "21 mai 2023",
     author: "Pierre Dupont",
     category: "Réglementation",
-    image: "/images/blog-re2020.jpg",
+    image: "/norm.png",
     readTime: "7 min",
     content: [
       {
@@ -413,7 +412,7 @@ export const blogArticles: BlogArticle[] = [
     date: "12 mai 2023",
     author: "Jean-Michel Roux",
     category: "Gestion d'entreprise",
-    image: "/images/blog-tresorerie.jpg",
+    image: "/tresor.jpg",
     readTime: "6 min",
     content: [
       {
@@ -575,7 +574,7 @@ export const blogArticles: BlogArticle[] = [
     date: "28 avril 2023",
     author: "Marie Leclerc",
     category: "Tendances",
-    image: "/images/blog-materiaux-bio.jpg",
+    image: "/mat.jpg",
     readTime: "4 min",
     content: [
       {
@@ -733,7 +732,7 @@ export const blogArticles: BlogArticle[] = [
     date: "15 avril 2023",
     author: "Olivier Pinheiro",
     category: "Aides financières",
-    image: "/images/blog-cee.jpg",
+    image: "/cee.jpg",
     readTime: "9 min",
     content: [
       {
@@ -826,7 +825,7 @@ export const blogArticles: BlogArticle[] = [
       },
       {
         type: "paragraph",
-        content: "Pour valoriser efficacement le dispositif des CEE auprès de vos clients et l'intégrer dans votre stratégie commerciale, plusieurs approches sont possibles :"
+        content: "Pour valoriser efficacement le dispositif des CEE auprès de vos clients et l'intégrer judicieusement dans votre approche commerciale, plusieurs approches sont possibles :"
       },
       {
         type: "heading",
